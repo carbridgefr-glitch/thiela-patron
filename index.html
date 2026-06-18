@@ -1,1 +1,811 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Α.Π.Σ. Θύελλα Πατρών</title>
+  <meta name="description" content="Επίσημο NFC προφίλ της Α.Π.Σ. Θύελλα Πατρών. Ιστορία, επικοινωνία, χάρτης, social media και αξιολόγηση." />
+  <meta name="theme-color" content="#0f4f9f" />
+
+  <link rel="manifest" href="manifest.json" />
+
+  <style>
+    :root {
+      --blue-dark: #08275f;
+      --blue-main: #0f4f9f;
+      --blue-bright: #1b75d0;
+      --blue-soft: #e8f3ff;
+      --gold: #d9a826;
+      --gold-light: #f4cf63;
+      --white: #ffffff;
+      --text: #10213f;
+      --muted: #657897;
+      --card: rgba(255, 255, 255, 0.88);
+      --stroke: rgba(15, 79, 159, 0.18);
+      --shadow: 0 16px 40px rgba(7, 39, 95, 0.18);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(244, 207, 99, 0.34), transparent 30%),
+        radial-gradient(circle at top right, rgba(27, 117, 208, 0.32), transparent 34%),
+        linear-gradient(180deg, #dceeff 0%, #f4f9ff 36%, #d8eaff 100%);
+      min-height: 100vh;
+      padding-bottom: 94px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255,255,255,0.72)),
+        linear-gradient(180deg, #dff0ff 0%, #f8fbff 48%, #dcecff 100%);
+      overflow: hidden;
+      box-shadow: 0 0 45px rgba(8, 39, 95, 0.12);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 345px;
+      background-image:
+        linear-gradient(180deg, rgba(15, 79, 159, 0.18), rgba(15, 79, 159, 0.62)),
+        url("cover.jpeg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 30px 18px 34px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(110deg, rgba(8, 39, 95, 0.78), rgba(15, 79, 159, 0.18), rgba(217, 168, 38, 0.16)),
+        radial-gradient(circle at 50% 35%, rgba(255,255,255,0.18), transparent 38%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      bottom: -64px;
+      height: 130px;
+      background: #f8fbff;
+      border-radius: 50% 50% 0 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 15px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      margin-bottom: 18px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+    }
+
+    .logo-wrap {
+      width: 118px;
+      height: 118px;
+      border-radius: 30px;
+      margin: 0 auto 16px;
+      background: rgba(255,255,255,0.98);
+      border: 4px solid var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 38px rgba(0, 0, 0, 0.24);
+      overflow: hidden;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.1;
+      letter-spacing: 0.3px;
+      color: #ffffff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.34);
+    }
+
+    .subtitle {
+      margin: 11px auto 0;
+      max-width: 400px;
+      color: rgba(255,255,255,0.9);
+      font-size: 15px;
+      line-height: 1.5;
+      text-shadow: 0 3px 13px rgba(0,0,0,0.24);
+    }
+
+    .main {
+      position: relative;
+      z-index: 3;
+      padding: 18px;
+      margin-top: -10px;
+    }
+
+    .section {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .section.gold-line {
+      border: 1px solid rgba(217, 168, 38, 0.38);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.94), rgba(240,247,255,0.9));
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      font-size: 19px;
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      letter-spacing: -0.2px;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 6px;
+      height: 24px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold));
+      display: inline-block;
+      box-shadow: 0 5px 12px rgba(217, 168, 38, 0.25);
+    }
+
+    p {
+      margin: 0;
+      color: #334767;
+      font-size: 15px;
+      line-height: 1.66;
+    }
+
+    .buttons {
+      display: grid;
+      gap: 11px;
+      margin-top: 15px;
+    }
+
+    .btn {
+      width: 100%;
+      min-height: 58px;
+      border-radius: 18px;
+      padding: 15px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background:
+        linear-gradient(180deg, #ffffff, #edf6ff);
+      border: 1px solid rgba(15, 79, 159, 0.16);
+      color: var(--blue-dark);
+      font-weight: 800;
+      font-size: 15px;
+      box-shadow: 0 12px 24px rgba(8, 39, 95, 0.12);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(217, 168, 38, 0.55);
+      box-shadow: 0 16px 30px rgba(8, 39, 95, 0.17);
+    }
+
+    .btn.primary {
+      background:
+        linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #08275f;
+      border-color: rgba(217, 168, 38, 0.65);
+    }
+
+    .btn.blue {
+      background:
+        linear-gradient(135deg, var(--blue-bright), var(--blue-main));
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn .left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 13px;
+      background: rgba(15, 79, 159, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--blue-main);
+    }
+
+    .btn.blue .icon-box {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+    }
+
+    .btn.primary .icon-box {
+      background: rgba(8, 39, 95, 0.12);
+      color: #08275f;
+    }
+
+    .arrow {
+      opacity: 0.7;
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .manager {
+      display: grid;
+      grid-template-columns: 94px 1fr;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .manager-photo {
+      width: 94px;
+      height: 94px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 3px solid var(--gold-light);
+      background: #ffffff;
+      box-shadow: 0 14px 27px rgba(8, 39, 95, 0.20);
+    }
+
+    .manager-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .manager-label {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .manager-name {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--blue-dark);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .manager-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .feedback-intro {
+      margin-bottom: 14px;
+    }
+
+    .faces {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .face-btn {
+      border: 1px solid rgba(15, 79, 159, 0.14);
+      background: linear-gradient(180deg, #ffffff, #edf6ff);
+      border-radius: 20px;
+      padding: 13px 8px;
+      min-height: 112px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      font-family: inherit;
+      box-shadow: 0 10px 22px rgba(8, 39, 95, 0.10);
+    }
+
+    .face-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(217, 168, 38, 0.6);
+      box-shadow: 0 14px 30px rgba(8, 39, 95, 0.15);
+    }
+
+    .custom-face {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #ffe17a, #d9a826);
+      box-shadow:
+        inset 0 -4px 9px rgba(112, 71, 0, 0.18),
+        0 8px 16px rgba(217, 168, 38, 0.24);
+      border: 2px solid rgba(255,255,255,0.9);
+    }
+
+    .custom-face::before,
+    .custom-face::after {
+      content: "";
+      position: absolute;
+      top: 15px;
+      width: 6px;
+      height: 8px;
+      border-radius: 50%;
+      background: #08275f;
+    }
+
+    .custom-face::before {
+      left: 14px;
+    }
+
+    .custom-face::after {
+      right: 14px;
+    }
+
+    .mouth {
+      position: absolute;
+      left: 50%;
+      width: 22px;
+      height: 12px;
+      transform: translateX(-50%);
+    }
+
+    .sad .mouth {
+      bottom: 9px;
+      border-top: 3px solid #08275f;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .neutral .mouth {
+      bottom: 14px;
+      height: 3px;
+      background: #08275f;
+      border-radius: 999px;
+    }
+
+    .happy .mouth {
+      bottom: 11px;
+      border-bottom: 3px solid #08275f;
+      border-radius: 0 0 50% 50%;
+    }
+
+    .face-text {
+      font-size: 12px;
+      line-height: 1.25;
+      font-weight: 900;
+      color: var(--blue-dark);
+    }
+
+    .create-box {
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(244, 207, 99, 0.32), rgba(27, 117, 208, 0.13)),
+        rgba(255,255,255,0.92);
+      border-color: rgba(217, 168, 38, 0.42);
+    }
+
+    .create-box h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      color: var(--blue-dark);
+    }
+
+    .create-box p {
+      color: #334767;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 18px 18px 26px;
+      text-align: center;
+      color: rgba(16, 33, 63, 0.58);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .footer a {
+      color: rgba(8, 39, 95, 0.78);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .install-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: calc(100% - 28px);
+      max-width: 492px;
+      z-index: 50;
+    }
+
+    .install-btn {
+      width: 100%;
+      min-height: 58px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #12a967, #077044);
+      color: white;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: 0 18px 38px rgba(8, 39, 95, 0.28);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 16px;
+      font-family: inherit;
+    }
+
+    .install-help {
+      display: none;
+      margin-top: 9px;
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(15,79,159,0.16);
+      border-radius: 16px;
+      padding: 12px;
+      color: #334767;
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: center;
+      box-shadow: 0 16px 35px rgba(8, 39, 95, 0.18);
+    }
+
+    .install-help.show {
+      display: block;
+    }
+
+    @media (max-width: 380px) {
+      h1 {
+        font-size: 27px;
+      }
+
+      .hero {
+        min-height: 325px;
+      }
+
+      .manager {
+        grid-template-columns: 84px 1fr;
+      }
+
+      .manager-photo {
+        width: 84px;
+        height: 84px;
+      }
+
+      .face-btn {
+        min-height: 104px;
+        padding: 10px 6px;
+      }
+
+      .custom-face {
+        width: 43px;
+        height: 43px;
+      }
+
+      .custom-face::before,
+      .custom-face::after {
+        top: 14px;
+      }
+
+      .custom-face::before {
+        left: 12px;
+      }
+
+      .custom-face::after {
+        right: 12px;
+      }
+
+      .face-text {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="hero">
+      <div class="hero-content">
+        <div class="badge">Α.Π.Σ. Θύελλα Πατρών</div>
+
+        <div class="logo-wrap">
+          <img src="profil%20logo.png" alt="Λογότυπο Α.Π.Σ. Θύελλα Πατρών" />
+        </div>
+
+        <h1>Α.Π.Σ. Θύελλα Πατρών</h1>
+        <p class="subtitle">
+          Ιστορικός ποδοσφαιρικός σύλλογος της Πάτρας με ρίζες, αξίες και δυναμική παρουσία στον αθλητισμό.
+        </p>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <section class="section gold-line">
+        <h2 class="section-title">Προφίλ Ομάδας</h2>
+        <p>
+          Η Α.Π.Σ. Θύελλα Πατρών είναι ένας ιστορικός ποδοσφαιρικός σύλλογος της Πάτρας,
+          με βαθιές ρίζες στην περιοχή των Προσφυγικών και έντονη παρουσία στον αθλητισμό της πόλης.
+          Με σεβασμό στην ιστορία της και έμφαση στη νέα γενιά, συνεχίζει να καλλιεργεί το ποδόσφαιρο,
+          την ομαδικότητα και τις αξίες του αθλητισμού.
+        </p>
+
+        <div class="buttons">
+          <a class="btn primary" href="https://thyellafc.gr/">
+            <span class="left">
+              <span class="icon-box">🌐</span>
+              <span>Επίσημο Website</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+
+          <a class="btn blue" href="https://www.google.com/maps/place/Glafkou+1,+Patra+262+21/@38.2054606,21.7580315,18z/data=!4m6!3m5!1s0x135e3677a46060fd:0x59a7623f6f9d0e97!8m2!3d38.2055083!4d21.7590994!16s%2Fg%2F11y0t9zx_k?authuser=0&entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D">
+            <span class="left">
+              <span class="icon-box">📍</span>
+              <span>Google Map</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+
+          <a class="btn" href="tel:+302614008316">
+            <span class="left">
+              <span class="icon-box">☎</span>
+              <span>Τηλέφωνο Ομάδας</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+
+          <a class="btn" href="mailto:info@thyellafc.gr">
+            <span class="left">
+              <span class="icon-box">✉</span>
+              <span>Email Επικοινωνίας</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Social Media</h2>
+        <p>
+          Ακολουθήστε την ομάδα για νέα, ανακοινώσεις, στιγμές αγώνων και δράσεις των ακαδημιών.
+        </p>
+
+        <div class="buttons">
+          <a class="btn" href="https://www.instagram.com/aps.thiella.patrwn/">
+            <span class="left">
+              <span class="icon-box">IG</span>
+              <span>Instagram</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+
+          <a class="btn" href="https://www.facebook.com/groups/100368610048917/">
+            <span class="left">
+              <span class="icon-box">f</span>
+              <span>Facebook</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section gold-line">
+        <h2 class="section-title">Η Ιστορία της Θύελλας</h2>
+        <p>
+          Η Θύελλα Πατρών ιδρύθηκε στις 14 Ιουνίου 1930 από πρόσφυγες του Πόντου και της Μικράς Ασίας,
+          που εγκαταστάθηκαν στην περιοχή της Αγίας Φωτεινής και των Προσφυγικών.
+          Από τους πρωτεργάτες της ομάδας ήταν ο Βασίλης Κοτίδης, πρόσφυγας τσαγκάρης,
+          που έδωσε την ψυχή του στη Θύελλα, ράβοντας μπάλες και ποδοσφαιρικά παπούτσια
+          στην αυλή του σπιτιού του για να στηρίξει την ομάδα.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="manager">
+          <div class="manager-photo">
+            <img src="xristos%20.jpeg" alt="Σωτηρόπουλος Χρήστος" />
+          </div>
+
+          <div>
+            <div class="manager-label">Υπεύθυνος Ακαδημίας</div>
+            <div class="manager-name">Σωτηρόπουλος Χρήστος</div>
+            <div class="manager-text">
+              Επικοινωνία για πληροφορίες σχετικά με την Ακαδημία της Θύελλας Πατρών.
+            </div>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <a class="btn primary" href="tel:+306974966577">
+            <span class="left">
+              <span class="icon-box">☎</span>
+              <span>Κλήση Υπεύθυνου Ακαδημίας</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section gold-line" id="feedback">
+        <h2 class="section-title">Πώς ήταν η εμπειρία σας;</h2>
+        <p class="feedback-intro">
+          Η γνώμη σας βοηθά την ομάδα να γίνεται καλύτερη. Επιλέξτε την εμπειρία σας.
+        </p>
+
+        <div class="faces">
+          <button class="face-btn" type="button" onclick="sendFeedbackEmail('Χρειάζεται βελτίωση')">
+            <span class="custom-face sad">
+              <span class="mouth"></span>
+            </span>
+            <span class="face-text">Χρειάζεται<br>βελτίωση</span>
+          </button>
+
+          <button class="face-btn" type="button" onclick="sendFeedbackEmail('Καλή εμπειρία')">
+            <span class="custom-face neutral">
+              <span class="mouth"></span>
+            </span>
+            <span class="face-text">Καλή<br>εμπειρία</span>
+          </button>
+
+          <button class="face-btn" type="button" onclick="openGoogleReview()">
+            <span class="custom-face happy">
+              <span class="mouth"></span>
+            </span>
+            <span class="face-text">Άριστη<br>εμπειρία</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section create-box">
+        <h3>Θέλω κι εγώ τη δική μου NFC σελίδα</h3>
+        <p>
+          Δημιουργία επαγγελματικού NFC προφίλ για ομάδες, επιχειρήσεις, σχολεία, συλλόγους και επαγγελματίες.
+        </p>
+
+        <div class="buttons">
+          <a class="btn primary" href="https://www.instagram.com/lazaros_jewelart">
+            <span class="left">
+              <span class="icon-box">NFC</span>
+              <span>Φτιάξε τη δική σου NFC σελίδα</span>
+            </span>
+            <span class="arrow">›</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      Powered by NFC Brelok • Jewel Art<br />
+      Instagram:
+      <a href="https://www.instagram.com/lazaros_jewelart">lazaros_jewelart</a>
+    </footer>
+  </div>
+
+  <div class="install-bar">
+    <button class="install-btn" id="installBtn" type="button">
+      📲 Κράτησε το προφίλ στο κινητό μου
+    </button>
+    <div class="install-help" id="installHelp">
+      Για αποθήκευση στο κινητό: πάτησε το μενού του browser και επίλεξε
+      <strong>Προσθήκη στην αρχική οθόνη</strong>.
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJWxby99tJXhMRs3Icpglzaf4";
+    const FEEDBACK_EMAIL = "info@thyellafc.gr";
+
+    function openGoogleReview() {
+      window.location.href = GOOGLE_REVIEW_URL;
+    }
+
+    function sendFeedbackEmail(feeling) {
+      const subject = encodeURIComponent("Feedback για την εμπειρία μου - Α.Π.Σ. Θύελλα Πατρών");
+      const body = encodeURIComponent(
+        "Καλησπέρα,\n\nΘα ήθελα να μοιραστώ την εμπειρία μου με την Α.Π.Σ. Θύελλα Πατρών.\n\nΕπιλογή: " +
+        feeling +
+        "\n\nΣχόλιο:\n"
+      );
+
+      window.location.href = "mailto:" + FEEDBACK_EMAIL + "?subject=" + subject + "&body=" + body;
+    }
+
+    let deferredPrompt;
+    const installBtn = document.getElementById("installBtn");
+    const installHelp = document.getElementById("installHelp");
+
+    window.addEventListener("beforeinstallprompt", function(event) {
+      event.preventDefault();
+      deferredPrompt = event;
+    });
+
+    installBtn.addEventListener("click", async function() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      } else {
+        installHelp.classList.toggle("show");
+      }
+    });
+
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("service-worker.js").catch(function() {});
+      });
+    }
+  </script>
+</body>
+</html>
