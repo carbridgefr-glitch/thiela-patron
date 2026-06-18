@@ -734,14 +734,14 @@
         </p>
 
         <div class="faces">
-          <button class="face-btn" type="button" onclick="sendFeedbackEmail('Χρειάζεται βελτίωση')">
+          <button class="face-btn" type="button" onclick="window.location.href='feedback.html?mood=sad'">
             <span class="custom-face sad">
               <span class="mouth"></span>
             </span>
             <span class="face-text">Χρειάζεται<br>βελτίωση</span>
           </button>
 
-          <button class="face-btn" type="button" onclick="sendFeedbackEmail('Καλή εμπειρία')">
+          <button class="face-btn" type="button" onclick="window.location.href='feedback.html?mood=neutral'">
             <span class="custom-face neutral">
               <span class="mouth"></span>
             </span>
@@ -794,21 +794,9 @@
 
   <script>
     const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJWxby99tJXhMRs3Icpglzaf4";
-    const FEEDBACK_EMAIL = "info@thyellafc.gr";
 
     function openGoogleReview() {
       window.location.href = GOOGLE_REVIEW_URL;
-    }
-
-    function sendFeedbackEmail(feeling) {
-      const subject = encodeURIComponent("Feedback για την εμπειρία μου - Α.Π.Σ. Θύελλα Πατρών");
-      const body = encodeURIComponent(
-        "Καλησπέρα,\n\nΘα ήθελα να μοιραστώ την εμπειρία μου με την Α.Π.Σ. Θύελλα Πατρών.\n\nΕπιλογή: " +
-        feeling +
-        "\n\nΣχόλιο:\n"
-      );
-
-      window.location.href = "mailto:" + FEEDBACK_EMAIL + "?subject=" + subject + "&body=" + body;
     }
 
     let deferredPrompt;
