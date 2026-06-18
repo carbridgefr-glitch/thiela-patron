@@ -256,13 +256,13 @@
 
     .btn {
       width: 100%;
-      min-height: 62px;
-      border-radius: 22px;
-      padding: 14px 15px;
+      min-height: 58px;
+      border-radius: 999px;
+      padding: 15px 22px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      justify-content: center;
+      gap: 12px;
       background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
       border: 1px solid rgba(255, 255, 255, 0.16);
@@ -273,6 +273,7 @@
       transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
       overflow: hidden;
       position: relative;
+      text-align: center;
     }
 
     .btn::after {
@@ -312,10 +313,12 @@
     .btn .left {
       display: flex;
       align-items: center;
-      gap: 13px;
-      text-align: left;
+      justify-content: center;
+      gap: 0;
+      text-align: center;
       position: relative;
       z-index: 2;
+      width: 100%;
     }
 
     .arrow {
@@ -324,50 +327,7 @@
       line-height: 1;
       position: relative;
       z-index: 2;
-    }
-
-    .ball-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      position: relative;
-      background:
-        radial-gradient(circle at 50% 50%, #06133f 0 13%, transparent 14%),
-        radial-gradient(circle at 20% 22%, #06133f 0 8%, transparent 9%),
-        radial-gradient(circle at 78% 25%, #06133f 0 8%, transparent 9%),
-        radial-gradient(circle at 24% 78%, #06133f 0 8%, transparent 9%),
-        radial-gradient(circle at 76% 78%, #06133f 0 8%, transparent 9%),
-        #ffffff;
-      border: 2px solid rgba(241, 207, 99, 0.95);
-      box-shadow:
-        0 8px 18px rgba(0, 0, 0, 0.22),
-        inset 0 -5px 9px rgba(0, 0, 0, 0.13);
-    }
-
-    .ball-icon::before,
-    .ball-icon::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 25px;
-      height: 2px;
-      background: rgba(6, 19, 63, 0.7);
-      transform-origin: center;
-      border-radius: 999px;
-    }
-
-    .ball-icon::before {
-      transform: translate(-50%, -50%) rotate(35deg);
-    }
-
-    .ball-icon::after {
-      transform: translate(-50%, -50%) rotate(-35deg);
-    }
-
-    .primary .ball-icon {
-      border-color: rgba(6, 19, 63, 0.25);
+      margin-left: 4px;
     }
 
     .manager {
@@ -565,7 +525,7 @@
       width: 100%;
       min-height: 58px;
       border: none;
-      border-radius: 20px;
+      border-radius: 999px;
       background:
         linear-gradient(135deg, #0fb061, #05713f);
       color: white;
@@ -680,7 +640,6 @@
         <div class="buttons">
           <a class="btn primary" href="https://thyellafc.gr/">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Επίσημο Website</span>
             </span>
             <span class="arrow">›</span>
@@ -688,7 +647,6 @@
 
           <a class="btn blue" href="https://www.google.com/maps/place/Glafkou+1,+Patra+262+21/@38.2054606,21.7580315,18z/data=!4m6!3m5!1s0x135e3677a46060fd:0x59a7623f6f9d0e97!8m2!3d38.2055083!4d21.7590994!16s%2Fg%2F11y0t9zx_k?authuser=0&entry=ttu&g_ep=EgoyMDI2MDYxMy4wIKXMDSoASAFQAw%3D%3D">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Google Map</span>
             </span>
             <span class="arrow">›</span>
@@ -696,7 +654,6 @@
 
           <a class="btn" href="tel:+302614008316">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Τηλέφωνο Ομάδας</span>
             </span>
             <span class="arrow">›</span>
@@ -704,7 +661,6 @@
 
           <a class="btn" href="mailto:info@thyellafc.gr">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Email Επικοινωνίας</span>
             </span>
             <span class="arrow">›</span>
@@ -721,7 +677,6 @@
         <div class="buttons">
           <a class="btn" href="https://www.instagram.com/aps.thiella.patrwn/">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Instagram</span>
             </span>
             <span class="arrow">›</span>
@@ -729,7 +684,6 @@
 
           <a class="btn" href="https://www.facebook.com/groups/100368610048917/">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Facebook</span>
             </span>
             <span class="arrow">›</span>
@@ -766,7 +720,6 @@
         <div class="buttons">
           <a class="btn primary" href="tel:+306974966577">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Κλήση Υπεύθυνου Ακαδημίας</span>
             </span>
             <span class="arrow">›</span>
@@ -813,7 +766,6 @@
         <div class="buttons">
           <a class="btn primary" href="https://www.instagram.com/lazaros_jewelart">
             <span class="left">
-              <span class="ball-icon"></span>
               <span>Φτιάξε τη δική σου NFC σελίδα</span>
             </span>
             <span class="arrow">›</span>
