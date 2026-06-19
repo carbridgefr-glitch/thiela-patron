@@ -8,7 +8,9 @@
   <meta name="description" content="Επίσημο NFC προφίλ της Α.Π.Σ. Θύελλα Πατρών. Ιστορία, επικοινωνία, χάρτης, social media και αξιολόγηση." />
   <meta name="theme-color" content="#071b52" />
 
-  <link rel="manifest" href="manifest.json" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
 
   <style>
     :root {
@@ -734,14 +736,14 @@
         </p>
 
         <div class="faces">
-          <button class="face-btn" type="button" onclick="window.location.href='feedback.html?mood=sad'">
+          <button class="face-btn" type="button" onclick="window.location.href='feedback.html?mood=sad&v=40'">
             <span class="custom-face sad">
               <span class="mouth"></span>
             </span>
             <span class="face-text">Χρειάζεται<br>βελτίωση</span>
           </button>
 
-          <button class="face-btn" type="button" onclick="window.location.href='feedback.html?mood=neutral'">
+          <button class="face-btn" type="button" onclick="window.location.href='feedback.html?mood=neutral&v=40'">
             <span class="custom-face neutral">
               <span class="mouth"></span>
             </span>
@@ -758,15 +760,15 @@
       </section>
 
       <section class="section create-box">
-        <h3>Θέλω κι εγώ τη δική μου NFC σελίδα</h3>
+        <h3>Θες κι εσύ digital card σαν αυτή;</h3>
         <p>
-          Δημιουργία επαγγελματικού NFC προφίλ για ομάδες, επιχειρήσεις, σχολεία, συλλόγους και επαγγελματίες.
+          Με μια NFC σελίδα ο πελάτης βλέπει το προφίλ σου, τα social, την τοποθεσία και μπορεί να αφήσει αξιολόγηση.
         </p>
 
         <div class="buttons">
-          <a class="btn primary" href="https://www.instagram.com/lazaros_jewelart">
+          <a class="btn primary" href="https://carbridgefr-glitch.github.io/test-profil-page/create-card.html">
             <span class="left">
-              <span>Φτιάξε τη δική σου NFC σελίδα</span>
+              <span>Φτιάξε τη δική σου Digital Card</span>
             </span>
             <span class="arrow">›</span>
           </a>
@@ -793,6 +795,38 @@
   </div>
 
   <script>
+    const SITE_VERSION = "thyella-v40";
+
+    async function clearOldCacheIfNeeded() {
+      try {
+        const savedVersion = localStorage.getItem("thyella_site_version");
+
+        if (savedVersion !== SITE_VERSION) {
+          localStorage.setItem("thyella_site_version", SITE_VERSION);
+
+          if ("caches" in window) {
+            const cacheNames = await caches.keys();
+            await Promise.all(cacheNames.map(name => caches.delete(name)));
+          }
+
+          if ("serviceWorker" in navigator) {
+            const registrations = await navigator.serviceWorker.getRegistrations();
+            for (const registration of registrations) {
+              await registration.unregister();
+            }
+          }
+
+          if (savedVersion !== null) {
+            window.location.reload();
+          }
+        }
+      } catch (error) {
+        console.log("Cache refresh skipped:", error);
+      }
+    }
+
+    clearOldCacheIfNeeded();
+
     const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJWxby99tJXhMRs3Icpglzaf4";
 
     function openGoogleReview() {
@@ -817,12 +851,6 @@
         installHelp.classList.toggle("show");
       }
     });
-
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function() {
-        navigator.serviceWorker.register("service-worker.js").catch(function() {});
-      });
-    }
   </script>
 </body>
 </html>
